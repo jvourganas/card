@@ -367,6 +367,26 @@
     .back { transform: none; width: 3.5in; height: 2in; }
   }
 </style>
+
+<script>
+  function scaleCard() {
+    const scene = document.querySelector('.scene');
+    const cardW = 900;
+    const cardH = 500;
+    const vw = Math.min(window.innerWidth - 24, cardW);
+    if (vw < cardW) {
+      const scale = vw / cardW;
+      scene.style.transform = `scale(${scale})`;
+      scene.style.transformOrigin = 'top center';
+      scene.style.marginBottom = `-${cardH * (1 - scale)}px`;
+    } else {
+      scene.style.transform = '';
+      scene.style.marginBottom = '';
+    }
+  }
+  window.addEventListener('load', scaleCard);
+  window.addEventListener('resize', scaleCard);
+</script>
 </head>
 <body>
 
